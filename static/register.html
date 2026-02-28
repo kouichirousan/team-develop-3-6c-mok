@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新規登録 - 彦田ブルー（仮名前）</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="auth-page">
+    <!-- 背景の波 -->
+    <div class="auth-wave" style="bottom:0px"></div>
+    <div class="auth-wave" style="bottom:40px;animation-delay:0.5s;opacity:0.7"></div>
+    <div class="auth-wave" style="bottom:80px;animation-delay:1s;opacity:0.4"></div>
+
+    <!-- 泳ぐ魚 -->
+    <div class="auth-fish" style="top:15%;animation-delay:0s">🐟</div>
+    <div class="auth-fish" style="top:35%;animation-delay:3s">🐟</div>
+    <div class="auth-fish" style="top:55%;animation-delay:6s">🐟</div>
+    <div class="auth-fish" style="top:70%;animation-delay:9s">🐟</div>
+    <div class="auth-fish" style="top:25%;animation-delay:12s">🐟</div>
+
+    <!-- タイプ選択画面 -->
+    <div id="typeSelection" style="width:100%;max-width:48rem;position:relative;z-index:10">
+      <div class="auth-logo">
+        <div class="wave-icon">🌊</div>
+        <h1>彦田ブルー（仮名前）</h1>
+        <p>登録タイプを選択してください</p>
+      </div>
+
+      <div class="grid grid-cols-1 md-grid-cols-2 gap-6">
+        <!-- 管理者 -->
+        <div class="reg-type-card" onclick="selectType('admin')">
+          <div style="font-size:3.75rem;margin-bottom:1rem">👑</div>
+          <h2 style="font-size:1.5rem;font-weight:700;color:var(--ocean-deep);margin-bottom:0.75rem">管理者として登録</h2>
+          <p style="font-size:0.875rem;color:var(--gray-600);margin-bottom:1rem">新しいオフィスを作成し、全体の設定を管理します</p>
+          <div style="text-align:left;font-size:0.875rem;color:var(--gray-700)" class="space-y-2">
+            <div class="flex items-center gap-2"><span style="color:var(--coral-orange)">✓</span><span>オフィス設定の管理</span></div>
+            <div class="flex items-center gap-2"><span style="color:var(--coral-orange)">✓</span><span>経営ダッシュボードへのアクセス</span></div>
+            <div class="flex items-center gap-2"><span style="color:var(--coral-orange)">✓</span><span>全機能の利用</span></div>
+          </div>
+        </div>
+
+        <!-- 従業員 -->
+        <div class="reg-type-card" onclick="selectType('employee')">
+          <div style="font-size:3.75rem;margin-bottom:1rem">👤</div>
+          <h2 style="font-size:1.5rem;font-weight:700;color:var(--ocean-deep);margin-bottom:0.75rem">従業員として登録</h2>
+          <p style="font-size:0.875rem;color:var(--gray-600);margin-bottom:1rem">既存のオフィスに参加し、チームと交流します</p>
+          <div style="text-align:left;font-size:0.875rem;color:var(--gray-700)" class="space-y-2">
+            <div class="flex items-center gap-2"><span style="color:var(--ocean-medium)">✓</span><span>チェックイン機能</span></div>
+            <div class="flex items-center gap-2"><span style="color:var(--ocean-medium)">✓</span><span>バッジ獲得</span></div>
+            <div class="flex items-center gap-2"><span style="color:var(--ocean-medium)">✓</span><span>ランチマッチング</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:2rem;text-align:center">
+        <p style="font-size:0.875rem;color:var(--gray-600)">すでにアカウントをお持ちの方は</p>
+        <a href="login.html" style="margin-top:0.5rem;display:inline-block;color:var(--ocean-medium);font-weight:600">ログインはこちら →</a>
+      </div>
+    </div>
+
+    <!-- 登録フォーム画面 -->
+    <div id="registerForm" style="display:none;width:100%;max-width:48rem;position:relative;z-index:10">
+      <button onclick="backToSelection()" style="margin-bottom:1rem;padding:0.5rem 1rem;background:rgba(255,255,255,0.8);border-radius:0.75rem;border:2px solid var(--ocean-deep);color:var(--ocean-deep);font-weight:600;cursor:pointer">← 戻る</button>
+
+      <div class="auth-logo">
+        <div class="wave-icon">🌊</div>
+        <h1 id="regTitle">登録</h1>
+        <p id="regSubtitle">情報を入力してください</p>
+      </div>
+
+      <div class="auth-form-card wide">
+        <form onsubmit="handleRegister(event)" class="space-y-6">
+          <!-- 管理者用オフィス情報 -->
+          <div id="officeSection" style="display:none" class="space-y-5">
+            <div style="padding-bottom:1.5rem;border-bottom:4px solid var(--ocean-light)">
+              <div class="flex items-center gap-2 mb-4">
+                <span style="color:var(--ocean-medium);font-size:1.25rem">🏢</span>
+                <h3 style="font-size:1.25rem;font-weight:700;color:var(--ocean-deep)">オフィス情報</h3>
+              </div>
+
+              <div class="space-y-4">
+                <div>
+                  <label style="display:block;font-size:0.875rem;font-weight:600;color:var(--ocean-deep);margin-bottom:0.5rem">オフィス名</label>
+                  <input type="text" placeholder="東京本社オフィス" class="input-ocean">
+                </div>
+                <div>
+                  <label style="display:block;font-size:0.875rem;font-weight:600;color:var(--ocean-deep);margin-bottom:0.5rem">オフィス住所</label>
+                  <input type="text" placeholder="東京都渋谷区〇〇 1-2-3" class="input-ocean">
+                </div>
+                <div class="grid grid-cols-3 gap-4">
+                  <div>
+                    <label style="display:block;font-size:0.875rem;font-weight:600;color:var(--ocean-deep);margin-bottom:0.5rem">総座席数</label>
+                    <input type="number" placeholder="50" class="input-ocean">
+                  </div>
+                  <div>
+                    <label style="display:block;font-size:0.875rem;font-weight:600;color:var(--ocean-deep);margin-bottom:0.5rem">従業員数</label>
+                    <input type="number" placeholder="30" class="input-ocean">
+                  </div>
+                  <div>
+                    <label style="display:block;font-size:0.875rem;font-weight:600;color:var(--ocean-deep);margin-bottom:0.5rem">フロア数</label>
+                    <input type="number" placeholder="3" class="input-ocean">
+                  </div>
+                </div>
+                <div class="grid grid-cols-3 gap-4">
+                  <div>
+                    <label style="display:block;font-size:0.875rem;font-weight:600;color:var(--ocean-deep);margin-bottom:0.5rem">🕐 出社時刻</label>
+                    <input type="time" value="09:00" class="input-ocean">
+                  </div>
+                  <div>
+                    <label style="display:block;font-size:0.875rem;font-weight:600;color:var(--ocean-deep);margin-bottom:0.5rem">🕐 退社時刻</label>
+                    <input type="time" value="18:00" class="input-ocean">
+                  </div>
+                  <div>
+                    <label style="display:block;font-size:0.875rem;font-weight:600;color:var(--ocean-deep);margin-bottom:0.5rem">早起き鳥</label>
+                    <input type="time" value="08:00" class="input-ocean">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ユーザー情報 -->
+          <div class="space-y-5">
+            <div class="flex items-center gap-2 mb-4">
+              <span style="color:var(--ocean-medium);font-size:1.25rem">👤</span>
+              <h3 id="userSectionTitle" style="font-size:1.25rem;font-weight:700;color:var(--ocean-deep)">ユーザー情報</h3>
+            </div>
+
+            <div>
+              <label style="display:block;font-size:0.875rem;font-weight:600;color:var(--ocean-deep);margin-bottom:0.5rem">名前</label>
+              <div style="position:relative">
+                <span style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--ocean-medium)">👤</span>
+                <input type="text" placeholder="山田太郎" class="input-ocean input-with-icon">
+              </div>
+            </div>
+
+            <div>
+              <label style="display:block;font-size:0.875rem;font-weight:600;color:var(--ocean-deep);margin-bottom:0.5rem">メールアドレス</label>
+              <div style="position:relative">
+                <span style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--ocean-medium)">✉️</span>
+                <input type="email" placeholder="your@email.com" class="input-ocean input-with-icon">
+              </div>
+            </div>
+
+            <div>
+              <label style="display:block;font-size:0.875rem;font-weight:600;color:var(--ocean-deep);margin-bottom:0.5rem">部署</label>
+              <div style="position:relative">
+                <span style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--ocean-medium)">🏢</span>
+                <input type="text" placeholder="開発部" class="input-ocean input-with-icon">
+              </div>
+            </div>
+
+            <div>
+              <label style="display:block;font-size:0.875rem;font-weight:600;color:var(--ocean-deep);margin-bottom:0.5rem">パスワード</label>
+              <div style="position:relative">
+                <span style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--ocean-medium)">🔒</span>
+                <input type="password" placeholder="••••••••" class="input-ocean input-with-icon">
+              </div>
+            </div>
+          </div>
+
+          <!-- 登録ボタン -->
+          <button type="submit" id="registerBtn" class="w-full" style="padding:1rem 2rem;color:white;font-weight:700;font-size:1.125rem;border-radius:0.75rem;border:4px solid var(--ocean-deep);box-shadow:4px 4px 0px 0px rgba(0,61,92,0.5);cursor:pointer;transition:all 0.2s">
+            登録する
+          </button>
+        </form>
+
+        <div style="margin-top:1.5rem;text-align:center">
+          <p style="font-size:0.875rem;color:var(--gray-600)">すでにアカウントをお持ちの方は</p>
+          <a href="login.html" style="margin-top:0.5rem;display:inline-block;color:var(--ocean-medium);font-weight:600">ログインはこちら →</a>
+        </div>
+      </div>
+
+      <div style="margin-top:1.5rem;text-align:center">
+        <div class="mock-badge">🎮 モックアップモード</div>
+        <p style="font-size:0.875rem;color:var(--ocean-medium);margin-top:0.5rem">任意の情報で登録できます</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let selectedType = null;
+
+    function selectType(type) {
+      selectedType = type;
+      document.getElementById('typeSelection').style.display = 'none';
+      document.getElementById('registerForm').style.display = 'block';
+
+      const btn = document.getElementById('registerBtn');
+      if (type === 'admin') {
+        document.getElementById('regTitle').textContent = '👑 管理者登録';
+        document.getElementById('regSubtitle').textContent = 'オフィス情報と管理者情報を入力してください';
+        document.getElementById('officeSection').style.display = 'block';
+        document.getElementById('userSectionTitle').textContent = '管理者情報';
+        btn.style.background = 'linear-gradient(to right, var(--coral-orange), var(--coral-pink))';
+        btn.innerHTML = '👑 登録する';
+      } else {
+        document.getElementById('regTitle').textContent = '👤 従業員登録';
+        document.getElementById('regSubtitle').textContent = '従業員情報を入力してください';
+        document.getElementById('officeSection').style.display = 'none';
+        document.getElementById('userSectionTitle').textContent = 'ユーザー情報';
+        btn.style.background = 'linear-gradient(to right, var(--ocean-medium), var(--ocean-deep))';
+        btn.innerHTML = '👤 登録する';
+      }
+    }
+
+    function backToSelection() {
+      document.getElementById('typeSelection').style.display = 'block';
+      document.getElementById('registerForm').style.display = 'none';
+    }
+
+    function handleRegister(e) {
+      e.preventDefault();
+      const btn = document.getElementById('registerBtn');
+      const origText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner" style="font-size:1.5rem">🐠</span> 登録中...';
+
+      setTimeout(() => {
+        localStorage.setItem('userRole', selectedType || 'employee');
+        window.location.href = 'home.html';
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

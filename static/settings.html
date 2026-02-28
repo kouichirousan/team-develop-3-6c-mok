@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>設定 - 彦田ブルー（仮名前）</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <div class="main-content">
+      <div class="max-w-4xl mx-auto space-y-8">
+        <!-- ヘッダー -->
+        <div class="animate-on-load">
+          <h1 class="text-4xl font-bold mb-2">設定</h1>
+          <p class="text-gray-600">プロフィールと通知設定</p>
+        </div>
+
+        <!-- プロフィール設定 -->
+        <div class="animate-on-load card">
+          <div class="flex items-center gap-3 mb-6">
+            <span style="font-size:2rem;color:var(--primary)">👤</span>
+            <h2 class="text-2xl font-bold">プロフィール設定</h2>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <label class="block font-semibold mb-2">名前</label>
+              <input type="text" value="田中太郎" class="input-neo">
+            </div>
+            <div>
+              <label class="block font-semibold mb-2">部署</label>
+              <input type="text" value="開発部" class="input-neo">
+            </div>
+          </div>
+        </div>
+
+        <!-- 通知設定 -->
+        <div class="animate-on-load card">
+          <div class="flex items-center gap-3 mb-6">
+            <span style="font-size:2rem;color:var(--accent)">🔔</span>
+            <h2 class="text-2xl font-bold">通知設定</h2>
+          </div>
+          <div class="space-y-4">
+            <div class="notification-item">
+              <div>
+                <h3 class="font-semibold">チェックインリマインダー</h3>
+                <p class="text-sm text-gray-600">毎朝9時に通知</p>
+              </div>
+              <div class="toggle-switch on" onclick="toggleSwitch(this)">
+                <div class="toggle-knob"></div>
+              </div>
+            </div>
+            <div class="notification-item">
+              <div>
+                <h3 class="font-semibold">バッジ獲得通知</h3>
+                <p class="text-sm text-gray-600">新しいバッジを獲得したとき</p>
+              </div>
+              <div class="toggle-switch on" onclick="toggleSwitch(this)">
+                <div class="toggle-knob"></div>
+              </div>
+            </div>
+            <div class="notification-item">
+              <div>
+                <h3 class="font-semibold">ランチ招待通知</h3>
+                <p class="text-sm text-gray-600">誰かからランチに誘われたとき</p>
+              </div>
+              <div class="toggle-switch on" onclick="toggleSwitch(this)">
+                <div class="toggle-knob"></div>
+              </div>
+            </div>
+            <div class="notification-item">
+              <div>
+                <h3 class="font-semibold">ランキング更新通知</h3>
+                <p class="text-sm text-gray-600">毎週月曜日に順位を通知</p>
+              </div>
+              <div class="toggle-switch off" onclick="toggleSwitch(this)">
+                <div class="toggle-knob"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- プライバシー設定 -->
+        <div class="animate-on-load card">
+          <div class="flex items-center gap-3 mb-6">
+            <span style="font-size:2rem;color:var(--vibe-hot)">🛡️</span>
+            <h2 class="text-2xl font-bold">プライバシー設定</h2>
+          </div>
+          <div class="space-y-4">
+            <div class="privacy-item">
+              <h3 class="font-semibold mb-2">プロフィール公開範囲</h3>
+              <select class="select-neo">
+                <option>全員に公開</option>
+                <option>同じ部署のみ</option>
+                <option>非公開</option>
+              </select>
+            </div>
+            <div class="privacy-item">
+              <h3 class="font-semibold mb-2">在席情報の表示</h3>
+              <select class="select-neo">
+                <option>常に表示</option>
+                <option>勤務時間のみ</option>
+                <option>非表示</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- 保存ボタン -->
+        <button class="btn-save animate-on-load" id="saveBtn" onclick="handleSave()">
+          <div class="flex items-center justify-center gap-2">
+            <span>💾</span>
+            <span>設定を保存</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script>
+    if (!checkAuth()) { /* redirected */ }
+    renderSidebar('settings');
+
+    function handleSave() {
+      const btn = document.getElementById('saveBtn');
+      btn.classList.add('saved');
+      btn.innerHTML = '<div class="flex items-center justify-center gap-2"><span>✓</span><span>保存しました！</span></div>';
+      setTimeout(() => {
+        btn.classList.remove('saved');
+        btn.innerHTML = '<div class="flex items-center justify-center gap-2"><span>💾</span><span>設定を保存</span></div>';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
