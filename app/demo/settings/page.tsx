@@ -3,16 +3,10 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Settings, User, Bell, Shield, Palette, Save } from 'lucide-react'
-import type { WorkStyle, HobbyTag } from '@/types'
-
-const workStyles: WorkStyle[] = ['集中モード', '雑談OK', '相談のります']
-const hobbyTags: HobbyTag[] = ['サウナ', 'キャンプ', '激辛', '筋トレ', '投資', 'アニメ']
 
 export default function SettingsPage() {
   const [name, setName] = useState('田中太郎')
   const [department, setDepartment] = useState('開発部')
-  const [workStyle, setWorkStyle] = useState<WorkStyle>('集中モード')
-  const [selectedHobbies, setSelectedHobbies] = useState<HobbyTag[]>(['サウナ', '筋トレ', '投資'])
   const [notifications, setNotifications] = useState({
     checkin: true,
     badge: true,
@@ -20,14 +14,6 @@ export default function SettingsPage() {
     ranking: false,
   })
   const [saved, setSaved] = useState(false)
-
-  const toggleHobby = (hobby: HobbyTag) => {
-    setSelectedHobbies(prev =>
-      prev.includes(hobby)
-        ? prev.filter(h => h !== hobby)
-        : [...prev, hobby]
-    )
-  }
 
   const handleSave = () => {
     setSaved(true)
@@ -77,55 +63,6 @@ export default function SettingsPage() {
               onChange={(e) => setDepartment(e.target.value)}
               className="w-full px-4 py-3 rounded-xl border-4 border-black focus:outline-none focus:ring-2 focus:ring-primary"
             />
-          </div>
-
-          {/* Work Style */}
-          <div>
-            <label className="block font-semibold mb-2">ワークスタイル</label>
-            <div className="grid grid-cols-3 gap-3">
-              {workStyles.map((style) => (
-                <button
-                  key={style}
-                  onClick={() => setWorkStyle(style)}
-                  className={`
-                    px-4 py-3 rounded-xl border-4 border-black font-semibold
-                    transition-all
-                    ${workStyle === style
-                      ? 'bg-primary text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]'
-                      : 'bg-gray-100 hover:bg-gray-200'
-                    }
-                  `}
-                >
-                  {style}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Hobby Tags */}
-          <div>
-            <label className="block font-semibold mb-2">趣味タグ（複数選択可）</label>
-            <div className="grid grid-cols-3 gap-3">
-              {hobbyTags.map((hobby) => (
-                <button
-                  key={hobby}
-                  onClick={() => toggleHobby(hobby)}
-                  className={`
-                    px-4 py-3 rounded-xl border-4 border-black font-semibold
-                    transition-all
-                    ${selectedHobbies.includes(hobby)
-                      ? 'bg-accent shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]'
-                      : 'bg-gray-100 hover:bg-gray-200'
-                    }
-                  `}
-                >
-                  {hobby}
-                </button>
-              ))}
-            </div>
-            <p className="text-sm text-gray-500 mt-2">
-              選択中: {selectedHobbies.length}個
-            </p>
           </div>
         </div>
       </motion.div>

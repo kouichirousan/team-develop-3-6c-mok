@@ -8,7 +8,7 @@ export default function DemoLayout({
   return (
     <div className="flex min-h-screen">
       <Sidebar />
-      <main className="flex-1 md:ml-72 p-8">
+      <main className="flex-1 md:ml-80 p-8">
         {children}
       </main>
     </div>

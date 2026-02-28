@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Utensils, Send, Check, X, Clock } from 'lucide-react'
+import { Send, Check, X, Clock } from 'lucide-react'
 import { mockUsers } from '@/lib/mock-data'
 
 export default function LunchPage() {
@@ -11,12 +11,6 @@ export default function LunchPage() {
   const lunchRequests = [
     { id: 1, from: '佐藤花子', status: 'pending', date: '2024-02-27' },
     { id: 2, from: '高橋美咲', status: 'pending', date: '2024-02-28' },
-  ]
-
-  const lunchHistory = [
-    { id: 1, partner: '佐藤花子', date: '2024-02-26', department: 'デザイン部' },
-    { id: 2, partner: '鈴木一郎', date: '2024-02-25', department: '営業部' },
-    { id: 3, partner: '山田健太', date: '2024-02-24', department: '開発部' },
   ]
 
   return (
@@ -120,35 +114,6 @@ export default function LunchPage() {
               <button className="px-4 py-2 bg-accent rounded-lg border-2 border-black font-semibold hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                 招待
               </button>
-            </div>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Lunch History */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="p-6 bg-white rounded-2xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
-      >
-        <div className="flex items-center gap-3 mb-4">
-          <Utensils className="text-vibe-hot" size={32} />
-          <h2 className="text-2xl font-bold">ランチ履歴</h2>
-        </div>
-        <div className="space-y-3">
-          {lunchHistory.map((lunch) => (
-            <div
-              key={lunch.id}
-              className="p-4 bg-gray-50 rounded-xl border-2 border-gray-200 flex items-center justify-between"
-            >
-              <div>
-                <h3 className="font-bold">{lunch.partner}</h3>
-                <p className="text-sm text-gray-600">{lunch.department}</p>
-              </div>
-              <div className="text-right">
-                <p className="text-sm text-gray-600">{lunch.date}</p>
-                <span className="text-green-600 font-semibold">✓ 完了</span>
-              </div>
             </div>
           ))}
         </div>

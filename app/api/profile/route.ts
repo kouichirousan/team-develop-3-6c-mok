@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getUserProfile, updateUserProfile, getUserStats, findMatchingUsers } from '@/lib/actions/profile'
+import { getUserProfile, updateUserProfile, getUserStats } from '@/lib/actions/profile'
 
 export async function GET(request: NextRequest) {
   try {
@@ -17,11 +17,6 @@ export async function GET(request: NextRequest) {
     if (type === 'stats') {
       const stats = await getUserStats(userId)
       return NextResponse.json({ stats })
-    }
-
-    if (type === 'matches') {
-      const matches = await findMatchingUsers(userId)
-      return NextResponse.json({ matches })
     }
 
     const profile = await getUserProfile(userId)

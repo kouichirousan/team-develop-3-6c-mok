@@ -1,14 +1,14 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import CheckInButton from '@/components/CheckInButton'
 import OceanVibeHeatmap from '@/components/OceanVibeHeatmap'
 import BadgeCard from '@/components/BadgeCard'
 import { isEarlyBird, calculatePoints } from '@/lib/utils'
-import { mockUserBadges, mockUsers, findMatchingUsers } from '@/lib/mock-data'
+import { mockUserBadges, mockUsers } from '@/lib/mock-data'
 import type { BadgeType } from '@/types'
-import { Sparkles, Award, Clock, Zap } from 'lucide-react'
+import { Sparkles, Award, Clock } from 'lucide-react'
 
 export default function DemoPage() {
   const [isCheckedIn, setIsCheckedIn] = useState(false)
@@ -18,26 +18,18 @@ export default function DemoPage() {
   const [showBadgeUnlock, setShowBadgeUnlock] = useState(false)
   const [unlockedBadge, setUnlockedBadge] = useState<BadgeType | null>(null)
   const [displayedBadges, setDisplayedBadges] = useState<BadgeType[]>(['early_bird_bronze'])
-  const [currentTime, setCurrentTime] = useState(new Date())
   const [simulationLog, setSimulationLog] = useState<string[]>([])
   
   const currentUserId = 'user-1'
   const currentUser = mockUsers.find(u => u.id === currentUserId)!
   const userBadges = mockUserBadges[currentUserId] || []
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(new Date())
-    }, 1000)
-    return () => clearInterval(timer)
-  }, [])
-
   const addLog = (message: string) => {
     setSimulationLog(prev => [`[${new Date().toLocaleTimeString()}] ${message}`, ...prev.slice(0, 9)])
   }
 
   const handleCheckIn = async () => {
-    const now = currentTime
+    const now = new Date()
     const earlyBird = isEarlyBird(now)
     const points = calculatePoints(earlyBird)
 
@@ -90,30 +82,6 @@ export default function DemoPage() {
       }
       return prev
     })
-  }
-
-  const simulateEarlyMorning = () => {
-    const earlyTime = new Date()
-    earlyTime.setHours(7, 30, 0)
-    setCurrentTime(earlyTime)
-    addLog('⏰ 時刻を7:30に変更（早朝シミュレーション）')
-  }
-
-  const simulateAfternoon = () => {
-    const afternoonTime = new Date()
-    afternoonTime.setHours(14, 0, 0)
-    setCurrentTime(afternoonTime)
-    addLog('⏰ 時刻を14:00に変更（午後シミュレーション）')
-  }
-
-  const simulateCrowdedOffice = () => {
-    setCheckedInCount(42)
-    addLog('👥 オフィスが混雑状態に（42人出社中）')
-  }
-
-  const simulateQuietOffice = () => {
-    setCheckedInCount(8)
-    addLog('🤫 オフィスが静かな状態に（8人出社中）')
   }
 
   return (
@@ -197,110 +165,16 @@ export default function DemoPage() {
               <h1 className="text-4xl font-bold mb-2">ホーム</h1>
               <p className="text-gray-600">今日のオフィスの様子</p>
             </div>
-            <div className="flex items-center gap-3 text-lg">
-              <Clock className="text-primary" />
-              <span className="font-mono font-bold">{currentTime.toLocaleTimeString()}</span>
-              <span className={`px-3 py-1 rounded-full border-2 border-black ${isEarlyBird(currentTime) ? 'bg-accent' : 'bg-gray-300'}`}>
-                {isEarlyBird(currentTime) ? '🌅 早朝' : '⏰ 通常'}
-              </span>
-            </div>
           </div>
         </motion.div>
-
-        {/* Simulation Controls */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="p-6 bg-white rounded-2xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
-        >
-          <div className="flex items-center gap-3 mb-4">
-            <Zap className="text-accent" size={32} />
-            <h2 className="text-2xl font-bold">シミュレーションコントロール</h2>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            <button
-              onClick={simulateEarlyMorning}
-              className="px-4 py-3 bg-gradient-to-r from-accent to-sand hover:from-sand hover:to-accent rounded-xl border-4 border-ocean-deep shadow-[4px_4px_0px_0px_rgba(0,61,92,0.3)] font-bold transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
-            >
-              🌅 早朝モード
-            </button>
-            <button
-              onClick={simulateAfternoon}
-              className="px-4 py-3 bg-gradient-to-br from-ocean-light to-ocean-medium text-white hover:from-ocean-medium hover:to-ocean-deep rounded-xl border-4 border-ocean-deep shadow-[4px_4px_0px_0px_rgba(0,61,92,0.3)] font-bold transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
-            >
-              ☀️ 午後モード
-            </button>
-            <button
-              onClick={simulateCrowdedOffice}
-              className="px-4 py-3 bg-gradient-to-br from-coral-pink to-coral-orange text-white hover:from-coral-orange hover:to-coral-pink rounded-xl border-4 border-ocean-deep shadow-[4px_4px_0px_0px_rgba(0,61,92,0.3)] font-bold transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
-            >
-              🔥 混雑状態
-            </button>
-            <button
-              onClick={simulateQuietOffice}
-              className="px-4 py-3 bg-gradient-to-br from-ocean-surface to-ocean-light hover:from-ocean-light hover:to-ocean-surface rounded-xl border-4 border-ocean-deep shadow-[4px_4px_0px_0px_rgba(0,61,92,0.3)] font-bold transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
-            >
-              ❄️ 静かな状態
-            </button>
-          </div>
-        </motion.div>
-
-        {/* User Stats */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="p-6 bg-gradient-to-br from-ocean-medium to-ocean-deep rounded-2xl border-4 border-ocean-deep shadow-[4px_4px_0px_0px_rgba(0,61,92,0.8)] text-white"
-        >
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-3xl font-bold">{currentUser.name}</h3>
-              <p className="text-xl opacity-90">{currentUser.department} • {currentUser.role}</p>
-            </div>
-            <div className="text-right">
-              <div className="text-sm opacity-90">
-                チェックイン: {currentUser.checkin_count}回 | 早起き: {currentUser.early_bird_points}回
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Ocean Vibe Heatmap */}
-        <OceanVibeHeatmap checkedInCount={checkedInCount} totalCapacity={50} />
 
         {/* Check-in Button */}
         <div className="flex justify-center py-8">
           <CheckInButton onCheckIn={handleCheckIn} isCheckedIn={isCheckedIn} />
         </div>
 
-        <div className="grid md:grid-cols-1 gap-8">
-          {/* Activity Log */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="p-6 bg-white rounded-2xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <Clock className="text-primary" size={32} />
-              <h2 className="text-2xl font-bold">アクティビティログ</h2>
-            </div>
-            <div className="space-y-2 max-h-64 overflow-y-auto">
-              {simulationLog.length === 0 ? (
-                <p className="text-gray-400 text-center py-8">アクティビティはまだありません</p>
-              ) : (
-                simulationLog.map((log, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="p-2 bg-gray-50 rounded-lg text-sm font-mono border-2 border-gray-200"
-                  >
-                    {log}
-                  </motion.div>
-                ))
-              )}
-            </div>
-          </motion.div>
-        </div>
+        {/* Ocean Vibe Heatmap */}
+        <OceanVibeHeatmap checkedInCount={checkedInCount} totalCapacity={50} />
       </div>
     </main>
   )

@@ -2,7 +2,7 @@
 
 import { createServerClient } from '@/lib/supabase-server'
 import { revalidatePath } from 'next/cache'
-import type { WorkStyle, HobbyTag, Role } from '@/types'
+import type { Role } from '@/types'
 
 export async function getUserProfile(userId: string) {
   const supabase = createServerClient()
@@ -26,8 +26,6 @@ export async function updateUserProfile(
   updates: {
     name?: string
     department?: string
-    work_style?: WorkStyle
-    hobby_tags?: HobbyTag[]
   }
 ) {
   const supabase = createServerClient()
@@ -57,8 +55,6 @@ export async function createUserProfile(data: {
   name: string
   department: string
   role: Role
-  work_style?: WorkStyle
-  hobby_tags?: HobbyTag[]
 }) {
   const supabase = createServerClient()
 
@@ -105,48 +101,6 @@ export async function getUserStats(userId: string) {
     total_points: ranking?.total_points || 0,
     rank: ranking?.rank || null,
   }
-}
-
-export async function findMatchingUsers(userId: string, limit: number = 3) {
-  const supabase = createServerClient()
-
-  // Get current user's hobby tags
-  const { data: currentUser } = await supabase
-    .from('user_profiles')
-    .select('hobby_tags')
-    .eq('id', userId)
-    .single()
-
-  if (!currentUser || !currentUser.hobby_tags) {
-    return []
-  }
-
-  // Find users with matching hobby tags
-  const { data: users } = await supabase
-    .from('user_profiles')
-    .select('*')
-    .neq('id', userId)
-    .limit(20)
-
-  if (!users) return []
-
-  // Calculate match scores
-  const usersWithScores = users
-    .map(user => {
-      const matchingTags = user.hobby_tags?.filter((tag: HobbyTag) =>
-        currentUser.hobby_tags.includes(tag)
-      ) || []
-      return {
-        ...user,
-        matchScore: matchingTags.length,
-        matchingTags,
-      }
-    })
-    .filter(user => user.matchScore > 0)
-    .sort((a, b) => b.matchScore - a.matchScore)
-    .slice(0, limit)
-
-  return usersWithScores
 }
 
 export async function getAllUsers(excludeUserId?: string) {

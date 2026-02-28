@@ -70,19 +70,18 @@ export default function Sidebar() {
       {/* Sidebar */}
       <motion.aside
         initial={false}
-        animate={{ x: isOpen ? 0 : -300 }}
+        animate={{ x: isOpen ? 0 : -320 }}
         className={`
-          fixed left-0 top-0 h-screen w-72 bg-gradient-to-b from-white to-ocean-surface/20 border-r-4 border-ocean-deep
+          fixed left-0 top-0 h-screen w-80 bg-gradient-to-b from-white to-ocean-surface/20 border-r-4 border-ocean-deep
           shadow-[8px_0px_0px_0px_rgba(0,61,92,0.3)]
-          z-40 overflow-y-auto backdrop-blur-sm
+          z-40 backdrop-blur-sm flex flex-col
           ${isOpen ? 'block' : 'hidden md:block'}
         `}
       >
-        <div className="p-6">
+        <div className="p-6 flex-1 overflow-y-auto">
           {/* Logo */}
           <div className="mb-8">
             <h1 className="text-2xl font-bold mb-1">彦田ブルー（仮名前）</h1>
-            <p className="text-sm text-gray-600">Office Vibe</p>
           </div>
 
           {/* User Info */}
@@ -130,28 +129,27 @@ export default function Sidebar() {
                     }
                   `}
                 >
-                  <Icon size={20} />
-                  <span className="font-semibold">{item.label}</span>
+                  <Icon size={20} className="flex-shrink-0" />
+                  <span className="font-semibold whitespace-nowrap">{item.label}</span>
                 </Link>
               )
             })}
           </nav>
+        </div>
 
-          {/* Footer */}
-          <div className="mt-8 pt-6 border-t-4 border-ocean-deep space-y-3">
-            {/* ログアウトボタン */}
-            <button
-              onClick={handleLogout}
-              className="w-full flex items-center gap-3 px-4 py-3 rounded-xl border-4 border-ocean-deep bg-gradient-to-r from-coral-pink to-coral-orange text-white hover:from-coral-orange hover:to-coral-pink transition-all shadow-[2px_2px_0px_0px_rgba(0,61,92,0.3)] hover:shadow-[4px_4px_0px_0px_rgba(0,61,92,0.3)]"
-            >
-              <LogOut size={20} />
-              <span className="font-semibold">ログアウト</span>
-            </button>
-            
-            <p className="text-xs text-gray-500 text-center">
-              v1.0.0 - Demo Mode
-            </p>
-          </div>
+        {/* Footer - 固定表示 */}
+        <div className="p-6 pt-4 border-t-4 border-ocean-deep space-y-3 bg-gradient-to-b from-white to-ocean-surface/20">
+          <button
+            onClick={handleLogout}
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl border-4 border-ocean-deep bg-gradient-to-r from-coral-pink to-coral-orange text-white hover:from-coral-orange hover:to-coral-pink transition-all shadow-[2px_2px_0px_0px_rgba(0,61,92,0.3)] hover:shadow-[4px_4px_0px_0px_rgba(0,61,92,0.3)]"
+          >
+            <LogOut size={20} />
+            <span className="font-semibold">ログアウト</span>
+          </button>
+          
+          <p className="text-xs text-gray-500 text-center">
+            v1.0.0 - Demo Mode
+          </p>
         </div>
       </motion.aside>
 

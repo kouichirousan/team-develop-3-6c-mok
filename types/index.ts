@@ -1,7 +1,3 @@
-export type WorkStyle = '集中モード' | '雑談OK' | '相談のります'
-
-export type HobbyTag = 'サウナ' | 'キャンプ' | '激辛' | '筋トレ' | '投資' | 'アニメ'
-
 export type Role = 'General' | 'Manager' | 'Executive'
 
 export type BadgeType = 
@@ -16,8 +12,6 @@ export interface UserProfile {
   name: string
   department: string
   role: Role
-  work_style: WorkStyle
-  hobby_tags: HobbyTag[]
   checkin_count: number
   early_bird_points: number
   created_at: string

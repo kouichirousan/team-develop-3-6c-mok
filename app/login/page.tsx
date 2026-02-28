@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 import { Mail, Lock, Waves } from 'lucide-react'
@@ -10,6 +10,11 @@ export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   const handleLogin = async (e: React.FormEvent, role: 'admin' | 'employee') => {
     e.preventDefault()
@@ -48,13 +53,13 @@ export default function LoginPage() {
       </div>
 
       {/* 泳ぐ魚の装飾 */}
-      {[...Array(5)].map((_, i) => (
+      {isMounted && [...Array(5)].map((_, i) => (
         <motion.div
           key={i}
           className="absolute text-4xl opacity-20"
           initial={{ x: -100, y: Math.random() * 600 }}
           animate={{
-            x: [null, window.innerWidth + 100],
+            x: [null, (typeof window !== 'undefined' ? window.innerWidth : 1200) + 100],
             y: [null, Math.random() * 600],
           }}
           transition={{
@@ -203,20 +208,6 @@ export default function LoginPage() {
           </div>
         </motion.div>
 
-        {/* デモモード注意書き */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="mt-6 text-center"
-        >
-          <div className="inline-block px-4 py-2 bg-accent/90 backdrop-blur-sm rounded-full border-2 border-ocean-deep">
-            <span className="text-sm font-semibold">🎮 モックアップモード</span>
-          </div>
-          <p className="text-sm text-ocean-medium mt-2">
-            任意のメールアドレスとパスワードでログインできます
-          </p>
-        </motion.div>
       </motion.div>
     </div>
   )

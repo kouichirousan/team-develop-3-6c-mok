@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useRouter } from 'next/navigation'
-import { Mail, Lock, User, Building, Waves, Building2, Users, MapPin, Clock } from 'lucide-react'
+import { Mail, Lock, User, Building, Waves, Building2, Users, MapPin } from 'lucide-react'
 
 type RegistrationType = 'admin' | 'employee' | null
 
@@ -21,9 +21,6 @@ export default function RegisterPage() {
     totalSeats: '',
     totalEmployees: '',
     floors: '',
-    startTime: '09:00',
-    endTime: '18:00',
-    earlyBirdTime: '08:00',
   })
   const [isLoading, setIsLoading] = useState(false)
 
@@ -360,47 +357,6 @@ export default function RegisterPage() {
                       value={formData.floors}
                       onChange={handleChange}
                       placeholder="3"
-                      className="w-full px-4 py-3 rounded-xl border-4 border-ocean-deep focus:outline-none focus:ring-2 focus:ring-ocean-light"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-3 gap-4">
-                  <div>
-                    <label className="block text-sm font-semibold text-ocean-deep mb-2">
-                      <Clock size={16} className="inline mr-1" />
-                      出社時刻
-                    </label>
-                    <input
-                      type="time"
-                      name="startTime"
-                      value={formData.startTime}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border-4 border-ocean-deep focus:outline-none focus:ring-2 focus:ring-ocean-light"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-ocean-deep mb-2">
-                      <Clock size={16} className="inline mr-1" />
-                      退社時刻
-                    </label>
-                    <input
-                      type="time"
-                      name="endTime"
-                      value={formData.endTime}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border-4 border-ocean-deep focus:outline-none focus:ring-2 focus:ring-ocean-light"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-ocean-deep mb-2">
-                      早起き鳥
-                    </label>
-                    <input
-                      type="time"
-                      name="earlyBirdTime"
-                      value={formData.earlyBirdTime}
-                      onChange={handleChange}
                       className="w-full px-4 py-3 rounded-xl border-4 border-ocean-deep focus:outline-none focus:ring-2 focus:ring-ocean-light"
                     />
                   </div>
