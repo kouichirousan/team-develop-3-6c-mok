@@ -143,34 +143,9 @@ export default function LoginPage() {
               </div>
             </div>
 
-            {/* ログインボタン（管理者） */}
+            {/* ログインボタン */}
             <motion.button
               onClick={(e) => handleLogin(e as any, 'admin')}
-              disabled={isLoading}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full py-4 bg-gradient-to-r from-coral-orange to-coral-pink text-white font-bold text-lg rounded-xl border-4 border-ocean-deep shadow-[4px_4px_0px_0px_rgba(0,61,92,0.5)] hover:shadow-[6px_6px_0px_0px_rgba(0,61,92,0.5)] transition-all disabled:opacity-50"
-            >
-              {isLoading ? (
-                <span className="flex items-center justify-center gap-2">
-                  <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                  >
-                    🌊
-                  </motion.div>
-                  ログイン中...
-                </span>
-              ) : (
-                <span className="flex items-center justify-center gap-2">
-                  👑 管理者でログイン
-                </span>
-              )}
-            </motion.button>
-
-            {/* ログインボタン（従業員） */}
-            <motion.button
-              onClick={(e) => handleLogin(e as any, 'employee')}
               disabled={isLoading}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -187,9 +162,7 @@ export default function LoginPage() {
                   ログイン中...
                 </span>
               ) : (
-                <span className="flex items-center justify-center gap-2">
-                  👤 従業員でログイン
-                </span>
+                'ログイン'
               )}
             </motion.button>
           </div>
