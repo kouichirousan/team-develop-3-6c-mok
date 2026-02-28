@@ -83,7 +83,7 @@ export default function Home() {
           className="text-center"
         >
           <h1 className="text-6xl font-bold mb-2">
-            Office Vibe Connector
+            彦田ブルー（仮名前）
           </h1>
           <p className="text-xl text-gray-600">オフィスの雰囲気を可視化し、交流を促進</p>
         </motion.div>

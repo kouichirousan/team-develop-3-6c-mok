@@ -81,8 +81,8 @@ export default function Sidebar() {
         <div className="p-6">
           {/* Logo */}
           <div className="mb-8">
-            <h1 className="text-2xl font-bold mb-1">Office Vibe</h1>
-            <p className="text-sm text-gray-600">Connector</p>
+            <h1 className="text-2xl font-bold mb-1">彦田ブルー（仮名前）</h1>
+            <p className="text-sm text-gray-600">Office Vibe</p>
           </div>
 
           {/* User Info */}

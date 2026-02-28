@@ -89,7 +89,7 @@ export default function LoginPage() {
             <Waves size={64} className="text-ocean-medium mx-auto mb-4" />
           </motion.div>
           <h1 className="text-4xl font-bold text-ocean-deep mb-2">
-            Office Vibe Connector
+            彦田ブルー（仮名前）
           </h1>
           <p className="text-ocean-medium">オフィスの海へようこそ 🌊</p>
         </div>
