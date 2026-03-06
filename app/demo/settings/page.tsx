@@ -21,14 +21,14 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
+    <div className="px-4 pt-6 pb-4 space-y-5">
       {/* Header */}
       <motion.div
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
       >
-        <h1 className="text-4xl font-bold mb-2">設定</h1>
-        <p className="text-gray-600">プロフィールと通知設定</p>
+        <h1 className="text-2xl font-bold mb-1">設定</h1>
+        <p className="text-sm text-gray-600">プロフィールと通知設定</p>
       </motion.div>
 
       {/* Profile Settings */}

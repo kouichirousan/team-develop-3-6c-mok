@@ -93,10 +93,10 @@ export default function RegisterPage() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="w-full max-w-2xl relative z-10"
+          className="w-full max-w-lg relative z-10"
         >
           {/* ロゴ */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-6">
             <motion.div
               animate={{
                 y: [0, -10, 0],
@@ -108,25 +108,25 @@ export default function RegisterPage() {
               }}
               className="inline-block"
             >
-              <Waves size={64} className="text-ocean-medium mx-auto mb-4" />
+              <Waves size={48} className="text-ocean-medium mx-auto mb-3" />
             </motion.div>
-            <h1 className="text-4xl font-bold text-ocean-deep mb-2">
+            <h1 className="text-3xl font-bold text-ocean-deep mb-2">
               彦田ブルー（仮名前）
             </h1>
-            <p className="text-ocean-medium">登録タイプを選択してください</p>
+            <p className="text-sm text-ocean-medium">登録タイプを選択してください</p>
           </div>
 
           {/* 登録タイプ選択 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-4">
             {/* 管理者として登録 */}
             <motion.button
               onClick={() => setRegistrationType('admin')}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="bg-white/90 backdrop-blur-sm p-8 rounded-3xl border-4 border-ocean-deep shadow-[8px_8px_0px_0px_rgba(0,61,92,0.8)] hover:shadow-[12px_12px_0px_0px_rgba(0,61,92,0.8)] transition-all"
+              className="bg-white/90 backdrop-blur-sm p-6 rounded-3xl border-4 border-ocean-deep shadow-[6px_6px_0px_0px_rgba(0,61,92,0.8)] hover:shadow-[8px_8px_0px_0px_rgba(0,61,92,0.8)] transition-all"
             >
-              <div className="text-6xl mb-4">👑</div>
-              <h2 className="text-2xl font-bold text-ocean-deep mb-3">管理者として登録</h2>
+              <div className="text-5xl mb-3">👑</div>
+              <h2 className="text-xl font-bold text-ocean-deep mb-2">管理者として登録</h2>
               <p className="text-sm text-gray-600 mb-4">
                 新しいオフィスを作成し、全体の設定を管理します
               </p>
@@ -151,10 +151,10 @@ export default function RegisterPage() {
               onClick={() => setRegistrationType('employee')}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="bg-white/90 backdrop-blur-sm p-8 rounded-3xl border-4 border-ocean-deep shadow-[8px_8px_0px_0px_rgba(0,61,92,0.8)] hover:shadow-[12px_12px_0px_0px_rgba(0,61,92,0.8)] transition-all"
+              className="bg-white/90 backdrop-blur-sm p-6 rounded-3xl border-4 border-ocean-deep shadow-[6px_6px_0px_0px_rgba(0,61,92,0.8)] hover:shadow-[8px_8px_0px_0px_rgba(0,61,92,0.8)] transition-all"
             >
-              <div className="text-6xl mb-4">👤</div>
-              <h2 className="text-2xl font-bold text-ocean-deep mb-3">従業員として登録</h2>
+              <div className="text-5xl mb-3">👤</div>
+              <h2 className="text-xl font-bold text-ocean-deep mb-2">従業員として登録</h2>
               <p className="text-sm text-gray-600 mb-4">
                 既存のオフィスに参加し、チームと交流します
               </p>
@@ -241,18 +241,18 @@ export default function RegisterPage() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-3xl relative z-10"
+        className="w-full max-w-lg relative z-10"
       >
         {/* 戻るボタン */}
         <button
           onClick={() => setRegistrationType(null)}
-          className="mb-4 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-xl border-2 border-ocean-deep text-ocean-deep font-semibold hover:bg-white transition-colors"
+          className="mb-4 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-xl border-2 border-ocean-deep text-ocean-deep font-semibold hover:bg-white transition-colors text-sm"
         >
           ← 戻る
         </button>
 
         {/* ロゴ */}
-        <div className="text-center mb-8">
+          <div className="text-center mb-6">
           <motion.div
             animate={{
               y: [0, -10, 0],
@@ -264,9 +264,9 @@ export default function RegisterPage() {
             }}
             className="inline-block"
           >
-            <Waves size={64} className="text-ocean-medium mx-auto mb-4" />
+            <Waves size={48} className="text-ocean-medium mx-auto mb-3" />
           </motion.div>
-          <h1 className="text-4xl font-bold text-ocean-deep mb-2">
+          <h1 className="text-3xl font-bold text-ocean-deep mb-2">
             {registrationType === 'admin' ? '👑 管理者登録' : '👤 従業員登録'}
           </h1>
           <p className="text-ocean-medium">
@@ -281,15 +281,15 @@ export default function RegisterPage() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
-          className="bg-white/90 backdrop-blur-sm p-8 rounded-3xl border-4 border-ocean-deep shadow-[8px_8px_0px_0px_rgba(0,61,92,0.8)]"
+          className="bg-white/90 backdrop-blur-sm p-5 rounded-3xl border-4 border-ocean-deep shadow-[6px_6px_0px_0px_rgba(0,61,92,0.8)]"
         >
-          <form onSubmit={handleRegister} className="space-y-6">
+          <form onSubmit={handleRegister} className="space-y-4">
             {/* 管理者の場合：オフィス設定 */}
             {registrationType === 'admin' && (
-              <div className="space-y-5 pb-6 border-b-4 border-ocean-light">
-                <div className="flex items-center gap-2 mb-4">
-                  <Building2 className="text-ocean-medium" size={24} />
-                  <h3 className="text-xl font-bold text-ocean-deep">オフィス情報</h3>
+              <div className="space-y-4 pb-4 border-b-4 border-ocean-light">
+                <div className="flex items-center gap-2 mb-3">
+                  <Building2 className="text-ocean-medium" size={20} />
+                  <h3 className="text-lg font-bold text-ocean-deep">オフィス情報</h3>
                 </div>
 
                 <div>
@@ -365,10 +365,10 @@ export default function RegisterPage() {
             )}
 
             {/* 共通：ユーザー情報 */}
-            <div className="space-y-5">
-              <div className="flex items-center gap-2 mb-4">
-                <User className="text-ocean-medium" size={24} />
-                <h3 className="text-xl font-bold text-ocean-deep">
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 mb-3">
+                <User className="text-ocean-medium" size={20} />
+                <h3 className="text-lg font-bold text-ocean-deep">
                   {registrationType === 'admin' ? '管理者情報' : 'ユーザー情報'}
                 </h3>
               </div>

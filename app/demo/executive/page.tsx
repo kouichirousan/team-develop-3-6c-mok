@@ -89,14 +89,14 @@ export default function ExecutivePage() {
   const min = Math.min(...chartData.map(d => d.value)).toFixed(1)
 
   return (
-    <div className="max-w-7xl mx-auto space-y-8">
+    <div className="px-4 pt-6 pb-4 space-y-5">
       {/* Header */}
       <motion.div
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
       >
-        <h1 className="text-4xl font-bold mb-2">経営ダッシュボード</h1>
-        <p className="text-gray-600">オフィス活用状況の分析</p>
+        <h1 className="text-2xl font-bold mb-1">経営ダッシュボード</h1>
+        <p className="text-sm text-gray-600">オフィス活用状況の分析</p>
       </motion.div>
 
       {/* データタイプ選択 */}
@@ -106,10 +106,10 @@ export default function ExecutivePage() {
         className="bg-white p-6 rounded-3xl border-4 border-ocean-deep shadow-[8px_8px_0px_0px_rgba(0,61,92,0.3)]"
       >
         <h2 className="text-xl font-bold mb-4">表示データ選択</h2>
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-3">
           <button
             onClick={() => setDataType('attendance')}
-            className={`p-4 rounded-xl border-4 font-bold transition-all ${
+            className={`p-3 rounded-xl border-4 font-bold transition-all text-sm ${
               dataType === 'attendance'
                 ? 'bg-gradient-to-r from-ocean-medium to-ocean-deep text-white border-ocean-deep shadow-[4px_4px_0px_0px_rgba(0,61,92,0.5)]'
                 : 'bg-white text-ocean-deep border-ocean-light hover:border-ocean-medium'
@@ -121,7 +121,7 @@ export default function ExecutivePage() {
 
           <button
             onClick={() => setDataType('spaceLoad')}
-            className={`p-4 rounded-xl border-4 font-bold transition-all ${
+            className={`p-3 rounded-xl border-4 font-bold transition-all text-sm ${
               dataType === 'spaceLoad'
                 ? 'bg-gradient-to-r from-coral-orange to-coral-pink text-white border-coral-orange shadow-[4px_4px_0px_0px_rgba(251,146,60,0.5)]'
                 : 'bg-white text-coral-orange border-coral-orange/30 hover:border-coral-orange'
@@ -133,7 +133,7 @@ export default function ExecutivePage() {
 
           <button
             onClick={() => setDataType('lunch')}
-            className={`p-4 rounded-xl border-4 font-bold transition-all ${
+            className={`p-3 rounded-xl border-4 font-bold transition-all text-sm ${
               dataType === 'lunch'
                 ? 'bg-gradient-to-r from-green-500 to-green-600 text-white border-green-600 shadow-[4px_4px_0px_0px_rgba(34,197,94,0.5)]'
                 : 'bg-white text-green-600 border-green-200 hover:border-green-400'
@@ -287,20 +287,20 @@ export default function ExecutivePage() {
         </div>
 
         {/* 統計サマリー */}
-        <div className="grid md:grid-cols-3 gap-4 mt-6">
-          <div className={`p-6 bg-gradient-to-br ${currentConfig.color} text-white rounded-2xl border-4 border-ocean-deep shadow-[4px_4px_0px_0px_rgba(0,61,92,0.5)]`}>
-            <p className="text-sm opacity-90 mb-1">平均値</p>
-            <p className="text-4xl font-bold">{average}{currentConfig.unit}</p>
+        <div className="grid grid-cols-3 gap-3 mt-6">
+          <div className={`p-4 bg-gradient-to-br ${currentConfig.color} text-white rounded-2xl border-4 border-ocean-deep shadow-[4px_4px_0px_0px_rgba(0,61,92,0.5)]`}>
+            <p className="text-xs opacity-90 mb-1">平均値</p>
+            <p className="text-2xl font-bold">{average}{currentConfig.unit}</p>
           </div>
 
-          <div className={`p-6 bg-gradient-to-br ${currentConfig.color} text-white rounded-2xl border-4 border-ocean-deep shadow-[4px_4px_0px_0px_rgba(0,61,92,0.5)]`}>
-            <p className="text-sm opacity-90 mb-1">最大値</p>
-            <p className="text-4xl font-bold">{max}{currentConfig.unit}</p>
+          <div className={`p-4 bg-gradient-to-br ${currentConfig.color} text-white rounded-2xl border-4 border-ocean-deep shadow-[4px_4px_0px_0px_rgba(0,61,92,0.5)]`}>
+            <p className="text-xs opacity-90 mb-1">最大値</p>
+            <p className="text-2xl font-bold">{max}{currentConfig.unit}</p>
           </div>
 
-          <div className={`p-6 bg-gradient-to-br ${currentConfig.color} text-white rounded-2xl border-4 border-ocean-deep shadow-[4px_4px_0px_0px_rgba(0,61,92,0.5)]`}>
-            <p className="text-sm opacity-90 mb-1">最小値</p>
-            <p className="text-4xl font-bold">{min}{currentConfig.unit}</p>
+          <div className={`p-4 bg-gradient-to-br ${currentConfig.color} text-white rounded-2xl border-4 border-ocean-deep shadow-[4px_4px_0px_0px_rgba(0,61,92,0.5)]`}>
+            <p className="text-xs opacity-90 mb-1">最小値</p>
+            <p className="text-2xl font-bold">{min}{currentConfig.unit}</p>
           </div>
         </div>
 

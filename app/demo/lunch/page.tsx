@@ -14,14 +14,14 @@ export default function LunchPage() {
   ]
 
   return (
-    <div className="max-w-6xl mx-auto space-y-8">
+    <div className="px-4 pt-6 pb-4 space-y-5">
       {/* Header */}
       <motion.div
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
       >
-        <h1 className="text-4xl font-bold mb-2">ランチマッチング</h1>
-        <p className="text-gray-600">社内交流を促進しよう</p>
+        <h1 className="text-2xl font-bold mb-1">ランチマッチング</h1>
+        <p className="text-sm text-gray-600">社内交流を促進しよう</p>
       </motion.div>
 
       {/* Progress to Food Fighter */}
@@ -96,7 +96,7 @@ export default function LunchPage() {
           <Send className="text-primary" size={32} />
           <h2 className="text-2xl font-bold">ランチに誘う</h2>
         </div>
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-3">
           {otherUsers.slice(0, 4).map((user) => (
             <div
               key={user.id}

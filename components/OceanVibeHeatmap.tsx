@@ -44,9 +44,9 @@ export default function OceanVibeHeatmap({ checkedInCount, totalCapacity = 50 }:
       animate={{ scale: 1, opacity: 1 }}
       className={`
         relative p-8 rounded-3xl border-4 border-ocean-deep
-        shadow-[8px_8px_0px_0px_rgba(0,61,92,0.8)]
+        shadow-[6px_6px_0px_0px_rgba(0,61,92,0.8)]
         bg-gradient-to-b ${oceanDepth.bg}
-        overflow-hidden min-h-[400px]
+        overflow-hidden min-h-[280px]
       `}
     >
       {/* Wave effect at top */}
@@ -113,7 +113,7 @@ export default function OceanVibeHeatmap({ checkedInCount, totalCapacity = 50 }:
       ))}
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center gap-4">
+      <div className="relative z-10 flex flex-col items-center gap-3">
         <motion.div
           animate={{
             y: [0, -10, 0],
@@ -124,20 +124,20 @@ export default function OceanVibeHeatmap({ checkedInCount, totalCapacity = 50 }:
             ease: "easeInOut"
           }}
         >
-          <Waves size={64} className="text-white drop-shadow-lg" />
+          <Waves size={48} className="text-white drop-shadow-lg" />
         </motion.div>
         
-        <h2 className="text-4xl font-bold text-white drop-shadow-lg text-center">
+        <h2 className="text-2xl font-bold text-white drop-shadow-lg text-center">
           {oceanDepth.text}
         </h2>
         
         <div className="flex items-baseline gap-2">
-          <span className="text-7xl font-bold text-white drop-shadow-lg">{checkedInCount}</span>
-          <span className="text-3xl text-white/90 drop-shadow-lg">/ {totalCapacity}</span>
+          <span className="text-5xl font-bold text-white drop-shadow-lg">{checkedInCount}</span>
+          <span className="text-2xl text-white/90 drop-shadow-lg">/ {totalCapacity}</span>
         </div>
         
-        <div className="flex items-center gap-2 text-xl text-white/90 drop-shadow-lg">
-          <span className="text-3xl">🐠</span>
+        <div className="flex items-center gap-2 text-lg text-white/90 drop-shadow-lg">
+          <span className="text-2xl">🐠</span>
           <p>人が出社中</p>
         </div>
 

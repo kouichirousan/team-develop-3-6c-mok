@@ -51,14 +51,14 @@ export default function MapPage() {
   }, {} as Record<Department, number>)
 
   return (
-    <div className="max-w-7xl mx-auto space-y-8">
+    <div className="px-4 pt-6 pb-4 space-y-5">
       {/* Header */}
       <motion.div
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
       >
-        <h1 className="text-4xl font-bold mb-2">オフィスマップ</h1>
-        <p className="text-gray-600">誰がオフィスにいるか確認</p>
+        <h1 className="text-2xl font-bold mb-1">オフィスマップ</h1>
+        <p className="text-sm text-gray-600">誰がオフィスにいるか確認</p>
       </motion.div>
 
       {/* 統計情報 */}
@@ -131,7 +131,7 @@ export default function MapPage() {
           <h2 className="text-xl font-bold">部署別出社状況</h2>
         </div>
 
-        <div className="grid md:grid-cols-5 gap-3">
+        <div className="grid grid-cols-3 gap-2">
           {(['開発部', 'デザイン部', '営業部', '人事部', '経営企画部'] as Department[]).map((dept) => (
             <div
               key={dept}
@@ -167,7 +167,7 @@ export default function MapPage() {
             <p className="text-lg">該当するメンバーが見つかりません</p>
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-3">
             {filteredPeople.map((person) => (
               <motion.div
                 key={person.id}

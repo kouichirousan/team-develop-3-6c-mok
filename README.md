@@ -1,219 +1,93 @@
-# 🚀 Office Vibe Connector
+# 🌊 彦田ブルー（仮名前）
 
-オフィスの雰囲気を可視化し、社員同士の交流を促進するゲーミフィケーションアプリ
+スマートフォン向けオフィス可視化モックアップアプリ
 
-## ✨ 主な機能
+## ✨ 概要
 
-### 🏠 ホーム画面
-- **リアルタイムVibeヒートマップ**: 現在のオフィスの活気を視覚化
-- **ワンタップチェックイン**: 楽しいアニメーションとハプティクスフィードバック
-- **今日のラッキーパーソン**: 趣味タグが一致する人をレコメンド
-- **週間ランキング**: ポイント制でモチベーション向上
+オフィスの雰囲気を可視化し、社員同士の交流を促進するモバイルファーストのモックアップアプリです。  
+バックエンド不要で、フロントエンドのみで動作します。
 
-### 🏆 バッジ＆クエスト
-- **早起き鳥** (Bronze/Silver/Gold): 連続早朝チェックインで進化
-- **オフィスの守り人**: 滞在時間100時間突破
-- **フードファイター**: 異なる部署の5人とランチで獲得
+## 📱 主な画面
 
-### 🗺️ オフィスマップ（実装予定）
-- 座席予約システム
-- リアルタイム在席状況
-- ランキング上位者の特権席
+### 🏠 ホーム
+- Ocean Vibe ヒートマップ（出社人数の可視化）
+- ワンタップチェックイン/アウト
 
-### 📊 経営層ダッシュボード（実装予定）
-- エリア別ヒートマップ
-- タレントディスカバリー
-- オフィス最適化提言
+### 🗺️ マップ
+- 部署別の在席メンバー一覧
+- エリア別坪単価検索
+
+### 🏆 バッジ
+- バッジコレクション（獲得/未獲得の表示）
+- 進捗バー
+
+### 🍽️ ランチ
+- ランチマッチング（招待/参加）
+- 部署を超えた交流促進
+
+### ⚙️ 設定
+- プロフィール設定
+- 通知設定
+
+### 📊 経営ダッシュボード（管理者のみ）
+- 出社率グラフ
+- 部署別統計
+
+### 🏢 オフィス設定（管理者のみ）
+- 部署管理
+- オフィス情報設定
+
+### 💰 コストシミュレーション（管理者のみ）
+- AI最適化提案
+- コスト分析
 
 ## 🛠️ 技術スタック
 
-- **Frontend**: Next.js 14 (App Router), React 18
-- **Styling**: Tailwind CSS (Neubrutalism Design)
+- **Framework**: Next.js 14 (App Router)
+- **UI**: React 18, TypeScript
+- **Styling**: Tailwind CSS (Ocean Theme)
 - **Animation**: Framer Motion
-- **Backend**: Supabase (PostgreSQL)
-- **Authentication**: Supabase Auth
-- **API**: Next.js Server Actions + API Routes
-- **Language**: TypeScript
-- **Deployment**: Vercel / Docker
+- **Icons**: Lucide React
+- **Date**: date-fns
 
-## 📦 セットアップ
-
-### 1. 依存関係のインストール
+## 🚀 起動方法
 
 ```bash
 npm install
-```
-
-### 2. Supabaseプロジェクトの作成
-
-1. [Supabase](https://supabase.com)でプロジェクトを作成
-2. SQL Editorで `supabase/migrations/001_initial_schema.sql` を実行
-3. プロジェクトのURLとAnon Keyを取得
-
-詳細は [BACKEND_GUIDE.md](./BACKEND_GUIDE.md) を参照
-
-### 3. 環境変数の設定
-
-```bash
-cp .env.local.example .env.local
-```
-
-`.env.local` を編集：
-
-```
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-```
-
-### 4. 開発サーバーの起動
-
-```bash
 npm run dev
 ```
 
-ブラウザで http://localhost:3000/demo を開く
+ブラウザで http://localhost:3000 を開く
 
-## 🐳 Dockerでの起動
+## 📂 プロジェクト構成
 
-```bash
-# 開発モード（ホットリロード有効）
-docker-compose --profile dev up app-dev
-
-# 本番モード
-docker-compose up --build app
+```
+app/
+├── page.tsx              # ルート（/loginへリダイレクト）
+├── login/                # ログイン画面
+├── register/             # 新規登録画面
+└── demo/                 # メイン画面群
+    ├── page.tsx           # ホーム
+    ├── map/               # マップ
+    ├── badges/            # バッジ
+    ├── lunch/             # ランチ
+    ├── settings/          # 設定
+    ├── executive/         # 経営ダッシュボード
+    ├── office-settings/   # オフィス設定
+    └── cost-simulation/   # コストシミュレーション
+components/
+├── BottomNav.tsx          # モバイル下部ナビゲーション
+├── CheckInButton.tsx      # チェックインボタン
+├── OceanVibeHeatmap.tsx   # ヒートマップ
+└── BadgeCard.tsx          # バッジカード
 ```
 
-詳細は [DOCKER_GUIDE.md](./DOCKER_GUIDE.md) を参照
+## 🎨 デザイン
 
-## 🎮 デモモード
-
-Supabaseの設定なしで、すぐに動作を確認できるデモモードを用意しています：
-
-```bash
-npm run dev
-```
-
-http://localhost:3000/demo にアクセス
-
-### デモ機能
-
-- **シミュレーションコントロール**: 時刻やオフィスの混雑状況を変更
-- **リアルタイムチェックイン**: 早朝ボーナスの動作確認
-- **バッジ獲得アニメーション**: 紙吹雪エフェクトと称号獲得モーダル
-- **アクティビティログ**: すべてのアクションをリアルタイム表示
-- **インタラクティブバッジ**: クリックで表示/非表示切替（最大3つ）
-
-### シミュレーション操作
-
-1. **早朝モード**: 時刻を7:30に変更して早起き鳥ボーナスを体験
-2. **午後モード**: 通常時間帯のチェックインを体験
-3. **混雑状態**: オフィスが熱気に包まれる様子を確認
-4. **静かな状態**: 落ち着いたオフィスの雰囲気を確認
-
-## 🎨 デザインコンセプト
-
-### Neubrutalism
-- 大胆な色使い（エレクトリック・ブルー、ネオン・イエロー）
-- 太い境界線とシャドウ
-- フラットでありながら立体感のあるUI
-
-### マイクロインタラクション
-- ボタンを押すと「ぷるん」と跳ねる
-- 称号獲得時は紙吹雪アニメーション
-- ハプティクスフィードバック
-
-## 📊 データモデル
-
-### User Profile
-- 基本情報: ID, Name, Department, Role
-- Vibeラベル: Work Style, Hobby Tags
-- 統計: Check-in Count, Early Bird Points
-
-### Check-in
-- タイムスタンプ
-- 早朝チェックインフラグ
-- 獲得ポイント
-
-### Badges
-- バッジタイプ
-- 獲得日時
-- 表示設定
-
-### Rankings
-- 週次集計
-- ポイント合計
-- ランク
-
-詳細は [BACKEND_GUIDE.md](./BACKEND_GUIDE.md) を参照
-
-## 🔧 バックエンドアーキテクチャ
-
-### Server Actions
-- チェックイン/アウト処理
-- バッジ管理
-- ランチマッチング
-- ランキング計算
-- プロフィール管理
-
-### API Routes
-- `/api/checkin` - チェックインAPI
-- `/api/lunch` - ランチAPI
-- `/api/ranking` - ランキングAPI
-- `/api/profile` - プロフィールAPI
-
-### 認証
-- Supabase Auth
-- Row Level Security (RLS)
-- セッション管理
-
-### データベース
-- PostgreSQL (Supabase)
-- トリガーによる自動統計更新
-- インデックスによるパフォーマンス最適化
-
-## 🚀 デプロイ
-
-### Vercel
-```bash
-vercel --prod
-```
-
-### Docker
-```bash
-docker build -t office-vibe-connector .
-docker run -p 3000:3000 office-vibe-connector
-```
-
-### AWS EC2
-```bash
-# PM2でプロセス管理
-pm2 start npm --name "office-vibe" -- start
-```
-
-詳細は [DEPLOYMENT.md](./DEPLOYMENT.md) を参照
-
-## 🎯 今後の実装予定
-
-- [x] 認証システム（Supabase Auth）
-- [x] Server Actions（データ処理）
-- [x] API Routes（RESTful API）
-- [ ] リアルタイム通知（Supabase Realtime）
-- [ ] プッシュ通知
-- [ ] モバイルアプリ（React Native）
-- [ ] 分析ダッシュボード拡張
-- [ ] エクスポート機能（CSV、PDF）
-
-## 📚 ドキュメント
-
-- [BACKEND_GUIDE.md](./BACKEND_GUIDE.md) - バックエンド実装の詳細
-- [DEPLOYMENT.md](./DEPLOYMENT.md) - デプロイメント手順
-- [DOCKER_GUIDE.md](./DOCKER_GUIDE.md) - Docker完全ガイド
-- [DEMO_GUIDE.md](./DEMO_GUIDE.md) - デモの使い方
-- [NAVIGATION_GUIDE.md](./NAVIGATION_GUIDE.md) - ページ構造とナビゲーション
-
-## 🤝 コントリビューション
-
-プルリクエスト歓迎！バグ報告や機能提案はIssueでお願いします。
+- **テーマ**: Ocean（海をモチーフにした配色）
+- **レイアウト**: モバイルファースト（max-w-lg）
+- **ナビゲーション**: 下部タブバー（BottomNav）
+- **UIスタイル**: Neubrutalism（太い境界線・シャドウ）
 
 ## 📄 ライセンス
 

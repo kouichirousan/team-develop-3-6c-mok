@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
-import { AuthProvider } from '@/contexts/AuthContext'
 import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Office Vibe Connector',
   description: 'オフィスの雰囲気を可視化し、交流を促進するアプリ',
+  viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
 }
 
 export default function RootLayout({
@@ -15,9 +15,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body>
-        <AuthProvider>
-          {children}
-        </AuthProvider>
+        {children}
       </body>
     </html>
   )

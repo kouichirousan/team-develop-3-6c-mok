@@ -38,21 +38,21 @@ export default function BadgesPage() {
   const progress = (earnedCount / totalCount) * 100
 
   return (
-    <div className="max-w-6xl mx-auto space-y-8">
+    <div className="px-4 pt-6 pb-4 space-y-5">
       {/* Header */}
       <motion.div
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
       >
-        <h1 className="text-4xl font-bold mb-2">バッジコレクション</h1>
-        <p className="text-gray-600">獲得したバッジを管理しよう</p>
+        <h1 className="text-2xl font-bold mb-1">バッジコレクション</h1>
+        <p className="text-sm text-gray-600">獲得したバッジを管理しよう</p>
       </motion.div>
 
       {/* Progress */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="p-6 bg-gradient-to-r from-primary to-blue-600 rounded-2xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-white"
+        className="p-4 bg-gradient-to-r from-primary to-blue-600 rounded-2xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-white"
       >
         <div className="flex items-center justify-between mb-4">
           <div>
@@ -113,7 +113,7 @@ export default function BadgesPage() {
           <Award className="text-vibe-hot" size={32} />
           <h2 className="text-2xl font-bold">全バッジ</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-4">
           {allBadges.map((badgeType) => (
             <BadgeCard
               key={badgeType}

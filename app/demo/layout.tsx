@@ -1,4 +1,4 @@
-import Sidebar from '@/components/Sidebar'
+import BottomNav from '@/components/BottomNav'
 
 export default function DemoLayout({
   children,
@@ -6,11 +6,11 @@ export default function DemoLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="flex min-h-screen">
-      <Sidebar />
-      <main className="flex-1 md:ml-80 p-8">
+    <div className="min-h-screen pb-20">
+      <main className="w-full max-w-lg mx-auto">
         {children}
       </main>
+      <BottomNav />
     </div>
   )
 }

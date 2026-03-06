@@ -61,17 +61,17 @@ export default function OfficeSettingsPage() {
   }
 
   return (
-    <div className="p-8 space-y-8">
+    <div className="px-4 pt-6 pb-4 space-y-5">
       {/* ヘッダー */}
       <motion.div
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
       >
-        <div className="flex items-center gap-3 mb-2">
-          <Shield className="text-coral-orange" size={40} />
-          <h1 className="text-4xl font-bold">オフィス設定</h1>
+        <div className="flex items-center gap-2 mb-1">
+          <Shield className="text-coral-orange" size={28} />
+          <h1 className="text-2xl font-bold">オフィス設定</h1>
         </div>
-        <p className="text-gray-600">管理者専用ページ - オフィス全体の設定を管理</p>
+        <p className="text-sm text-gray-600">管理者専用ページ</p>
       </motion.div>
 
       {/* 管理者専用バッジ */}

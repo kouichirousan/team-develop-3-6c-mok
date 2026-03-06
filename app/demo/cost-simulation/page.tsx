@@ -106,17 +106,17 @@ export default function CostSimulationPage() {
   }
 
   return (
-    <div className="p-8 space-y-8">
+    <div className="px-4 pt-6 pb-4 space-y-5">
       {/* ヘッダー */}
       <motion.div
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
       >
-        <div className="flex items-center gap-3 mb-2">
-          <Calculator className="text-coral-orange" size={40} />
-          <h1 className="text-4xl font-bold">コストシミュレーション</h1>
+        <div className="flex items-center gap-2 mb-1">
+          <Calculator className="text-coral-orange" size={28} />
+          <h1 className="text-2xl font-bold">コストシミュレーション</h1>
         </div>
-        <p className="text-gray-600">オフィスコストの最適化を検討</p>
+        <p className="text-sm text-gray-600">オフィスコストの最適化</p>
       </motion.div>
 
       {/* 管理者専用バッジ */}
@@ -128,7 +128,7 @@ export default function CostSimulationPage() {
         <span className="text-sm font-semibold text-coral-orange">👑 管理者専用</span>
       </motion.div>
 
-      <div className="max-w-4xl mx-auto space-y-8">
+      <div className="space-y-5">
         {/* AI推奨値 */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -140,7 +140,7 @@ export default function CostSimulationPage() {
             <h2 className="text-2xl font-bold">AI推奨値</h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-4 mb-4">
+          <div className="grid grid-cols-3 gap-3 mb-4">
             <div className="p-4 bg-white/80 rounded-xl">
               <p className="text-sm text-gray-600 mb-1">出社率 {utilizationRate}%</p>
               <p className="text-2xl font-bold">{recommendedSeats}席</p>

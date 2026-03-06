@@ -40,8 +40,8 @@ export default function CheckInButton({ onCheckIn, isCheckedIn }: CheckInButtonP
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         className={`
-          relative w-64 h-64 rounded-full font-bold text-2xl
-          shadow-[8px_8px_0px_0px_rgba(0,61,92,0.8)]
+          relative w-48 h-48 rounded-full font-bold text-xl
+          shadow-[6px_6px_0px_0px_rgba(0,61,92,0.8)]
           border-4 border-ocean-deep
           transition-all duration-200
           ${isCheckedIn 
