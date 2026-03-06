@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { BarChart3, TrendingUp, Users, Calendar, Filter } from 'lucide-react'
+import { BarChart3, Users, Calendar, Filter } from 'lucide-react'
 
-type DataType = 'attendance' | 'spaceLoad' | 'lunch'
+type DataType = 'attendance' | 'spaceLoad'
 type FilterType = 'daily' | 'monthly' | 'weekly' | 'yearly'
 
 // モックデータ生成
@@ -39,9 +39,6 @@ const generateMockData = (dataType: DataType, filterType: FilterType) => {
       case 'spaceLoad':
         value = 40 + Math.random() * 40 // 40-80%
         break
-      case 'lunch':
-        value = 10 + Math.random() * 20 // 10-30回
-        break
     }
     data.push({
       label: getLabel(i),
@@ -72,12 +69,6 @@ export default function ExecutivePage() {
       color: 'from-coral-orange to-coral-pink',
       icon: BarChart3,
     },
-    lunch: {
-      label: 'ランチ回数',
-      unit: '回',
-      color: 'from-green-500 to-green-600',
-      icon: TrendingUp,
-    },
   }
 
   const currentConfig = dataTypeConfig[dataType]
@@ -106,7 +97,7 @@ export default function ExecutivePage() {
         className="bg-white p-6 rounded-3xl border-4 border-ocean-deep shadow-[8px_8px_0px_0px_rgba(0,61,92,0.3)]"
       >
         <h2 className="text-xl font-bold mb-4">表示データ選択</h2>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-2 gap-3">
           <button
             onClick={() => setDataType('attendance')}
             className={`p-3 rounded-xl border-4 font-bold transition-all text-sm ${
@@ -129,18 +120,6 @@ export default function ExecutivePage() {
           >
             <BarChart3 className="mx-auto mb-2" size={32} />
             <span className="block">空間負荷率</span>
-          </button>
-
-          <button
-            onClick={() => setDataType('lunch')}
-            className={`p-3 rounded-xl border-4 font-bold transition-all text-sm ${
-              dataType === 'lunch'
-                ? 'bg-gradient-to-r from-green-500 to-green-600 text-white border-green-600 shadow-[4px_4px_0px_0px_rgba(34,197,94,0.5)]'
-                : 'bg-white text-green-600 border-green-200 hover:border-green-400'
-            }`}
-          >
-            <TrendingUp className="mx-auto mb-2" size={32} />
-            <span className="block">ランチ回数</span>
           </button>
         </div>
       </motion.div>

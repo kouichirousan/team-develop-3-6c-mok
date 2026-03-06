@@ -1,4 +1,4 @@
-import type { UserProfile, Ranking, BadgeType, LunchLog } from '@/types'
+import type { UserProfile, Ranking } from '@/types'
 
 export const mockUsers: UserProfile[] = [
   {
@@ -50,31 +50,6 @@ export const mockUsers: UserProfile[] = [
     early_bird_points: 20,
     created_at: '2024-01-01T00:00:00Z',
     updated_at: '2024-02-27T00:00:00Z',
-  },
-]
-
-export const mockUserBadges: Record<string, BadgeType[]> = {
-  'user-1': ['early_bird_bronze', 'early_bird_silver', 'office_guardian'],
-  'user-2': ['early_bird_bronze', 'food_fighter'],
-  'user-5': ['early_bird_bronze', 'early_bird_silver', 'early_bird_gold', 'office_guardian', 'food_fighter'],
-}
-
-export const mockLunchLogs: LunchLog[] = [
-  {
-    id: 'lunch-1',
-    requester_id: 'user-1',
-    partner_id: 'user-2',
-    lunch_date: '2024-02-26',
-    status: 'completed',
-    created_at: '2024-02-26T10:00:00Z',
-  },
-  {
-    id: 'lunch-2',
-    requester_id: 'user-1',
-    partner_id: 'user-3',
-    lunch_date: '2024-02-25',
-    status: 'completed',
-    created_at: '2024-02-25T10:00:00Z',
   },
 ]
 

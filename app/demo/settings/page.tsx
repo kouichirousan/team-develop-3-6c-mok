@@ -9,8 +9,6 @@ export default function SettingsPage() {
   const [department, setDepartment] = useState('開発部')
   const [notifications, setNotifications] = useState({
     checkin: true,
-    badge: true,
-    lunch: true,
     ranking: false,
   })
   const [saved, setSaved] = useState(false)
@@ -81,8 +79,6 @@ export default function SettingsPage() {
         <div className="space-y-4">
           {[
             { key: 'checkin', label: 'チェックインリマインダー', desc: '毎朝9時に通知' },
-            { key: 'badge', label: 'バッジ獲得通知', desc: '新しいバッジを獲得したとき' },
-            { key: 'lunch', label: 'ランチ招待通知', desc: '誰かからランチに誘われたとき' },
             { key: 'ranking', label: 'ランキング更新通知', desc: '毎週月曜日に順位を通知' },
           ].map((item) => (
             <div
